@@ -4,6 +4,11 @@ class GameOfLife {
             return ["."]
         }
         
-        return [".", ".", "."]
+        var newGrid = [String]()
+        
+        for _ in 0..<grid.count {
+            newGrid.append(".")
+        }
+        return newGrid
     }
 }

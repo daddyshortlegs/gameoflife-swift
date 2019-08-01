@@ -11,18 +11,20 @@ class GameOfLifeTests: XCTestCase {
 
     func testShouldDie_whenLonely() {
         let grid = ["*"]
-        
         let newGrid = gameOfLife.newGeneration(grid: grid)
-        
         XCTAssertEqual(["."], newGrid)
     }
 
     func testShouldDie_whenNoNeighbours() {
         let grid = [".", "*", "."]
-        
         let newGrid = gameOfLife.newGeneration(grid: grid)
-        
         XCTAssertEqual([".", ".", "."], newGrid)
+    }
+
+    func testShouldDie_whenNoNeighboursOnBiggerGrid() {
+        let grid = [".", "*", ".", "."]
+        let newGrid = gameOfLife.newGeneration(grid: grid)
+        XCTAssertEqual([".", ".", ".", "."], newGrid)
     }
 
 
