@@ -73,7 +73,7 @@ class GameOfLifeTests: XCTestCase {
         XCTAssertEqual(8, result)
     }
 
-    func xtestGetCorrectCount_fromTopRow() {
+    func testGetCorrectCount_fromTopRow() {
         let grid = [["*", "*", "*"],
                     ["*", "*", "*"],
                     ["*", "*", "*"]]
