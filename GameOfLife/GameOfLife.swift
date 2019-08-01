@@ -1,14 +1,21 @@
 class GameOfLife {
-    func newGeneration(grid: [String]) -> [String] {
-        if grid.count == 1 {
-            return ["."]
-        }
-        
+    func newGeneration(grid: [[String]]) -> [[String]] {
         var newGrid = [String]()
         
-        for _ in 0..<grid.count {
-            newGrid.append(".")
+        var rowSize = grid[0].count
+        var columnSize = grid.count
+        
+        var columns = [[String]]()
+        
+        for _ in 0..<columnSize {
+            var newRow = [String]()
+            for _ in 0..<rowSize {
+                newRow.append(".")
+            }
+            
+            columns.append(newRow)
         }
-        return newGrid
+    
+        return columns
     }
 }

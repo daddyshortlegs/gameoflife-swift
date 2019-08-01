@@ -10,22 +10,34 @@ class GameOfLifeTests: XCTestCase {
     }
 
     func testShouldDie_whenLonely() {
-        let grid = ["*"]
+        let grid = [["*"]]
         let newGrid = gameOfLife.newGeneration(grid: grid)
-        XCTAssertEqual(["."], newGrid)
+        XCTAssertEqual([["."]], newGrid)
     }
 
     func testShouldDie_whenNoNeighbours() {
-        let grid = [".", "*", "."]
+        let grid = [[".", "*", "."]]
         let newGrid = gameOfLife.newGeneration(grid: grid)
-        XCTAssertEqual([".", ".", "."], newGrid)
+        XCTAssertEqual([[".", ".", "."]], newGrid)
     }
 
     func testShouldDie_whenNoNeighboursOnBiggerGrid() {
-        let grid = [".", "*", ".", "."]
+        let grid = [[".", "*", ".", "."]]
         let newGrid = gameOfLife.newGeneration(grid: grid)
-        XCTAssertEqual([".", ".", ".", "."], newGrid)
+        XCTAssertEqual([[".", ".", ".", "."]], newGrid)
     }
 
+    func testShouldDie_whenNoNeighboursOn2DWorld() {
+        let grid = [[".", ".", "."],
+                    [".", "*", "."],
+                    [".", ".", "."]]
+        
+        let result = gameOfLife.newGeneration(grid: grid)
+        
+        let newGrid = [[".", ".", "."],
+                       [".", ".", "."],
+                       [".", ".", "."]]
+        XCTAssertEqual(newGrid, result)
+    }
 
 }
