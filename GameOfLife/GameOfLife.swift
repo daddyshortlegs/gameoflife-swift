@@ -1,15 +1,22 @@
 class GameOfLife {
     func newGeneration(grid: [[String]]) -> [[String]] {
+        var width = grid[0].count
+        var height = grid.count
+
+        
+        
+        
         var newGrid = [String]()
         
-        var rowSize = grid[0].count
-        var columnSize = grid.count
+        
+        
+        
         
         var columns = [[String]]()
         
-        for _ in 0..<columnSize {
+        for _ in 0..<height {
             var newRow = [String]()
-            for _ in 0..<rowSize {
+            for _ in 0..<width {
                 newRow.append(".")
             }
             
@@ -18,4 +25,9 @@ class GameOfLife {
     
         return columns
     }
+    
+    func count(grid: [[String]], x: Int, y: Int) -> Int {
+        return 2
+    }
+
 }

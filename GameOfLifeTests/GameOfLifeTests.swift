@@ -40,4 +40,29 @@ class GameOfLifeTests: XCTestCase {
         XCTAssertEqual(newGrid, result)
     }
 
+    func xtestShouldLive_when2Neighbours() {
+        let grid = [[".", "*", "."],
+                    [".", "*", "*"],
+                    [".", ".", "."]]
+        
+        let result = gameOfLife.newGeneration(grid: grid)
+        
+        let newGrid = [[".", "*", "."],
+                       [".", "*", "*"],
+                       [".", ".", "."]]
+        XCTAssertEqual(newGrid, result)
+    }
+    
+    func testGetCorrectCountAtPosition() {
+        let grid = [[".", "*", "."],
+                    [".", "*", "*"],
+                    [".", ".", "."]]
+        
+        let result = gameOfLife.count(grid: grid, x: 1, y: 1)
+        
+        XCTAssertEqual(2, result)
+
+    }
+
+    
 }
