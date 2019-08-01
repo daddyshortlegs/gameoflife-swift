@@ -29,10 +29,7 @@ class GameOfLife {
     func count(grid: [[String]], startX: Int, startY: Int) -> Int {
         var count = 0
         
-        var top = (startY - 1) < 0 ? 0 : startY - 1
-        var bottom = (startY + 1) > 2 ? 2 : startY + 1
-        
-        for y in top...bottom {
+        for y in topBounds(startY)...bottomBounds(startY) {
             count += countRow(row: grid[y], startX: startX)
         }
 
@@ -45,6 +42,14 @@ class GameOfLife {
             .count
     }
     
+    func topBounds(_ startY: Int) -> Int {
+        return (startY - 1) < 0 ? 0 : startY - 1
+    }
+
+    func bottomBounds(_ startY: Int) -> Int {
+        return (startY + 1) > 2 ? 2 : startY + 1
+    }
+
     func leftBounds(_ startX: Int) -> Int {
         return (startX - 1) < 0 ? 0 : startX - 1
     }
