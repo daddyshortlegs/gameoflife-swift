@@ -26,13 +26,13 @@ class GameOfLife {
         return columns
     }
     
-    func count(grid: [[String]], x: Int, y: Int) -> Int {
+    func count(grid: [[String]], startX: Int, startY: Int) -> Int {
         var width = grid[0].count
         var height = grid.count
 
         var count = 0
-        for y in 0..<height {
-            for x in 0..<width {
+        for y in (startY - 1)...(startY + 1) {
+            for x in (startX - 1)...(startX + 1) {
                 var element = grid[y][x]
                 if element == "*" {
                     count+=1

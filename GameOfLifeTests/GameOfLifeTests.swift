@@ -58,7 +58,7 @@ class GameOfLifeTests: XCTestCase {
                     [".", "*", "*"],
                     [".", ".", "."]]
         
-        let result = gameOfLife.count(grid: grid, x: 1, y: 1)
+        let result = gameOfLife.count(grid: grid, startX: 1, startY: 1)
         
         XCTAssertEqual(2, result)
     }
@@ -68,7 +68,7 @@ class GameOfLifeTests: XCTestCase {
                     [".", "*", "*"],
                     [".", ".", "."]]
         
-        let result = gameOfLife.count(grid: grid, x: 1, y: 1)
+        let result = gameOfLife.count(grid: grid, startX: 1, startY: 1)
         
         XCTAssertEqual(3, result)
         
