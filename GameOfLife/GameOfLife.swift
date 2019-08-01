@@ -27,27 +27,30 @@ class GameOfLife {
     }
     
     func count(grid: [[String]], startX: Int, startY: Int) -> Int {
-        var width = grid[0].count
-        var height = grid.count
-
         var count = 0
-        
         
         var top = (startY - 1) < 0 ? 0 : startY - 1
         var bottom = (startY + 1) > 2 ? 2 : startY + 1
-        var left = (startX - 1) < 0 ? 0 : startX - 1
-        var right = (startX + 1) > 2 ? 2 : startX + 1
         
         for y in top...bottom {
-            for x in left...right {
-                var element = grid[y][x]
-                if element == "*" {
-                    count+=1
-                }
-            }
+            count += countRow(row: grid[y], startX: startX)
         }
 
         return count - 1
+    }
+    
+    func countRow(row: [String], startX: Int) -> Int {
+        return (leftBounds(startX)...rightBounds(startX))
+            .filter { row[$0] == "*" }
+            .count
+    }
+    
+    func leftBounds(_ startX: Int) -> Int {
+        return (startX - 1) < 0 ? 0 : startX - 1
+    }
+    
+    func rightBounds(_ startX: Int) -> Int {
+        return (startX + 1) > 2 ? 2 : startX + 1
     }
 
 }

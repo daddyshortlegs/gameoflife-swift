@@ -113,6 +113,17 @@ class GameOfLifeTests: XCTestCase {
         XCTAssertEqual(3, result)
     }
 
+    func testGetCorrectCount_forBiggerBoard() {
+        let grid = [["*", "*", "*", "*"],
+                    ["*", "*", "*", "*"],
+                    ["*", "*", "*", "*"],
+                    ["*", "*", "*", "*"]]
+        
+        let result = gameOfLife.count(grid: grid, startX: 1, startY: 1)
+        
+        XCTAssertEqual(8, result)
+    }
+
 
     
 }
