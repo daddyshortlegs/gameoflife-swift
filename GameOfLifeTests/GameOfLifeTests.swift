@@ -17,6 +17,13 @@ class GameOfLifeTests: XCTestCase {
         XCTAssertEqual(["."], newGrid)
     }
 
+    func testShouldDie_whenNoNeighbours() {
+        let grid = [".", "*", "."]
+        
+        let newGrid = gameOfLife.newGeneration(grid: grid)
+        
+        XCTAssertEqual([".", ".", "."], newGrid)
+    }
 
 
 }
