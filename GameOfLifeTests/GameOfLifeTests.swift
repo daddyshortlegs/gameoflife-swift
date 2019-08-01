@@ -61,8 +61,19 @@ class GameOfLifeTests: XCTestCase {
         let result = gameOfLife.count(grid: grid, x: 1, y: 1)
         
         XCTAssertEqual(2, result)
-
     }
+    
+    func testGetCorrectCountAtPosition2() {
+        let grid = [[".", "*", "*"],
+                    [".", "*", "*"],
+                    [".", ".", "."]]
+        
+        let result = gameOfLife.count(grid: grid, x: 1, y: 1)
+        
+        XCTAssertEqual(3, result)
+        
+    }
+
 
     
 }

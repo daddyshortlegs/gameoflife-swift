@@ -27,7 +27,20 @@ class GameOfLife {
     }
     
     func count(grid: [[String]], x: Int, y: Int) -> Int {
-        return 2
+        var width = grid[0].count
+        var height = grid.count
+
+        var count = 0
+        for y in 0..<height {
+            for x in 0..<width {
+                var element = grid[y][x]
+                if element == "*" {
+                    count+=1
+                }
+            }
+        }
+
+        return count - 1
     }
 
 }
