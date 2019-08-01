@@ -31,8 +31,13 @@ class GameOfLife {
         var height = grid.count
 
         var count = 0
-        for y in (startY - 1)...(startY + 1) {
-            for x in (startX - 1)...(startX + 1) {
+        var top = (startY - 1)
+        var bottom = (startY + 1)
+        var left = (startX - 1)
+        var right = (startX + 1)
+        
+        for y in top...bottom {
+            for x in left...right {
                 var element = grid[y][x]
                 if element == "*" {
                     count+=1
