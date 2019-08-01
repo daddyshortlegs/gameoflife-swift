@@ -27,13 +27,8 @@ class GameOfLife {
     }
     
     func count(grid: [[String]], startX: Int, startY: Int) -> Int {
-        var count = 0
-        
-        for y in topBounds(startY)...bottomBounds(startY) {
-            count += countRow(row: grid[y], startX: startX)
-        }
-
-        return count - 1
+        return ((topBounds(startY)...bottomBounds(startY))
+            .reduce(0) { $0 + countRow(row: grid[$1], startX: startX) }) - 1
     }
     
     func countRow(row: [String], startX: Int) -> Int {
