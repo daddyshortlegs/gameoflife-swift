@@ -9,25 +9,10 @@ class GameOfLife {
     }
     
     func generateRow(grid: [[String]], y: Int) -> [String] {
-        let width = grid[0].count
-
         var newRow = [String]()
-        for x in 0..<width {
+        for x in 0..<grid[0].count {
             let neighbours = count(grid: grid, startX: x, startY: y)
-            
-            if grid[y][x] == "*" {
-                if neighbours < 2 || neighbours > 3 {
-                    newRow.append(".")
-                } else {
-                    newRow.append("*")
-                }
-            } else {
-                if neighbours == 3 {
-                    newRow.append("*")
-                } else {
-                    newRow.append(".")
-                }
-            }
+            newRow.append(getCell(pos: grid[y][x], neighbours: neighbours))
         }
         return newRow
     }
@@ -41,6 +26,24 @@ class GameOfLife {
         }
         
         return total
+    }
+    
+    func getCell(pos: String, neighbours: Int) -> String {
+        var cell = ""
+        if pos == "*" {
+            if neighbours < 2 || neighbours > 3 {
+                cell = "."
+            } else {
+                cell = "*"
+            }
+        } else {
+            if neighbours == 3 {
+                cell = "*"
+            } else {
+                cell = "."
+            }
+        }
+        return cell
     }
     
     func countRow(row: [String], startX: Int) -> Int {
