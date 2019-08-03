@@ -28,14 +28,6 @@ class GameOfLife {
         return total
     }
     
-    func getCell(pos: String, neighbours: Int) -> String {
-        if pos == "*" {
-            return (neighbours < 2 || neighbours > 3) ? "." : "*"
-        }
-
-        return neighbours == 3 ? "*" : "."
-    }
-    
     func countRow(row: [String], startX: Int) -> Int {
         return (leftBounds(startX)...rightBounds(startX))
             .filter { row[$0] == "*" }
@@ -56,6 +48,14 @@ class GameOfLife {
     
     func rightBounds(_ startX: Int) -> Int {
         return (startX + 1) > 2 ? 2 : startX + 1
+    }
+
+    func getCell(pos: String, neighbours: Int) -> String {
+        if pos == "*" {
+            return (neighbours < 2 || neighbours > 3) ? "." : "*"
+        }
+        
+        return neighbours == 3 ? "*" : "."
     }
 
 }
