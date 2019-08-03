@@ -9,19 +9,19 @@ class GameOfLifeTests: XCTestCase {
         gameOfLife = GameOfLife()
     }
 
-    func testShouldDie_whenLonely() {
+    func xtestShouldDie_whenLonely() {
         let grid = [["*"]]
         let newGrid = gameOfLife.newGeneration(grid: grid)
         XCTAssertEqual([["."]], newGrid)
     }
 
-    func testShouldDie_whenNoNeighbours() {
+    func xtestShouldDie_whenNoNeighbours() {
         let grid = [[".", "*", "."]]
         let newGrid = gameOfLife.newGeneration(grid: grid)
         XCTAssertEqual([[".", ".", "."]], newGrid)
     }
 
-    func testShouldDie_whenNoNeighboursOnBiggerGrid() {
+    func xtestShouldDie_whenNoNeighboursOnBiggerGrid() {
         let grid = [[".", "*", ".", "."]]
         let newGrid = gameOfLife.newGeneration(grid: grid)
         XCTAssertEqual([[".", ".", ".", "."]], newGrid)
@@ -39,19 +39,79 @@ class GameOfLifeTests: XCTestCase {
                        [".", ".", "."]]
         XCTAssertEqual(newGrid, result)
     }
+    
+    func testShouldDie_whenFewerThan2Neighbours() {
+        let grid = [[".", "*", "."],
+                    [".", "*", "."],
+                    [".", ".", "."]]
+        
+        let result = gameOfLife.newGeneration(grid: grid)
+        
+        let newGrid = [[".", ".", "."],
+                       [".", ".", "."],
+                       [".", ".", "."]]
+        XCTAssertEqual(newGrid, result)
+    }
 
-    func xtestShouldLive_when2Neighbours() {
+    
+
+    func testShouldDie_whenMoreThan3Neighbours() {
+        let grid = [[".", "*", "*"],
+                    [".", "*", "*"],
+                    [".", "*", "."]]
+        
+        let result = gameOfLife.newGeneration(grid: grid)
+        
+        let newGrid = [[".", "*", "*"],
+                       ["*", ".", "."],
+                       [".", "*", "*"]]
+        XCTAssertEqual(newGrid, result)
+    }
+
+    
+    func testDeadCellShouldReanmiate_when3Neighbours() {
         let grid = [[".", "*", "."],
                     [".", "*", "*"],
                     [".", ".", "."]]
         
         let result = gameOfLife.newGeneration(grid: grid)
         
-        let newGrid = [[".", "*", "."],
+        let newGrid = [[".", "*", "*"],
                        [".", "*", "*"],
                        [".", ".", "."]]
         XCTAssertEqual(newGrid, result)
     }
+    
+    func testCellsShouldSurvive_when3Neibhbours() {
+        let grid = [[".", "*", "*"],
+                    [".", "*", "*"],
+                    [".", ".", "."]]
+        
+        let result = gameOfLife.newGeneration(grid: grid)
+        
+        let newGrid = [[".", "*", "*"],
+                       [".", "*", "*"],
+                       [".", ".", "."]]
+        XCTAssertEqual(newGrid, result)
+    }
+
+    
+    func testLiveCellSurvives_when2Or3Neighbours() {
+        let grid = [[".", "*", "."],
+                    [".", "*", "."],
+                    [".", "*", "."]]
+        
+        let result = gameOfLife.newGeneration(grid: grid)
+        
+        let newGrid = [[".", ".", "."],
+                       ["*", "*", "*"],
+                       [".", ".", "."]]
+        XCTAssertEqual(newGrid, result)
+    }
+
+    
+    
+    
     
     func testGetCorrectCountAtPosition() {
         let grid = [[".", "*", "."],
@@ -124,6 +184,16 @@ class GameOfLifeTests: XCTestCase {
         XCTAssertEqual(8, result)
     }
 
+    func testGetCorrectCount1() {
+        let grid = [[".", "*", "."],
+                    [".", "*", "."],
+                    [".", "*", "."]]
 
-    
+        let result = gameOfLife.count(grid: grid, startX: 0, startY: 0)
+        
+        XCTAssertEqual(2, result)
+    }
+
+
+
 }
