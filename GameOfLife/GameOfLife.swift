@@ -29,21 +29,11 @@ class GameOfLife {
     }
     
     func getCell(pos: String, neighbours: Int) -> String {
-        var cell = ""
         if pos == "*" {
-            if neighbours < 2 || neighbours > 3 {
-                cell = "."
-            } else {
-                cell = "*"
-            }
-        } else {
-            if neighbours == 3 {
-                cell = "*"
-            } else {
-                cell = "."
-            }
+            return (neighbours < 2 || neighbours > 3) ? "." : "*"
         }
-        return cell
+
+        return neighbours == 3 ? "*" : "."
     }
     
     func countRow(row: [String], startX: Int) -> Int {
