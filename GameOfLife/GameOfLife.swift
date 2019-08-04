@@ -1,3 +1,8 @@
+struct Coordinate {
+    var x = 0
+    var y = 0
+}
+
 class GameOfLife {
     func newGeneration(grid: [[String]]) -> [[String]] {
         var columns = [[String]]()
@@ -11,25 +16,25 @@ class GameOfLife {
     func generateRow(grid: [[String]], y: Int) -> [String] {
         var newRow = [String]()
         for x in 0..<grid[0].count {
-            let neighbours = count(grid: grid, startX: x, startY: y)
+            let neighbours = count(grid: grid, Coordinate(x: x, y: y))
             newRow.append(getCell(pos: grid[y][x], neighbours: neighbours))
         }
         return newRow
     }
     
-    func count(grid: [[String]], startX: Int, startY: Int) -> Int {
-        var total = (topBounds(startY)...bottomBounds(startY))
-            .reduce(0) { $0 + countRow(row: grid[$1], startX: startX) }
+    func count(grid: [[String]], _ coordinate: Coordinate) -> Int {
+        var total = (topBounds(coordinate.y)...bottomBounds(coordinate.y))
+            .reduce(0) { $0 + countRow(row: grid[$1], coordinate) }
         
-        if grid[startY][startX] == "*" {
+        if grid[coordinate.y][coordinate.x] == "*" {
             total-=1
         }
         
         return total
     }
     
-    func countRow(row: [String], startX: Int) -> Int {
-        return (leftBounds(startX)...rightBounds(startX))
+    func countRow(row: [String], _ coordinate: Coordinate) -> Int {
+        return (leftBounds(coordinate.x)...rightBounds(coordinate.x))
             .filter { row[$0] == "*" }
             .count
     }
@@ -57,5 +62,4 @@ class GameOfLife {
         
         return neighbours == 3 ? "*" : "."
     }
-
 }

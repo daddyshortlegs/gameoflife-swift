@@ -118,7 +118,7 @@ class GameOfLifeTests: XCTestCase {
                     [".", "*", "*"],
                     [".", ".", "."]]
         
-        let result = gameOfLife.count(grid: grid, startX: 1, startY: 1)
+        let result = gameOfLife.count(grid: grid, Coordinate(x: 1, y: 1))
         
         XCTAssertEqual(2, result)
     }
@@ -128,7 +128,7 @@ class GameOfLifeTests: XCTestCase {
                     ["*", "*", "*"],
                     ["*", "*", "*"]]
         
-        let result = gameOfLife.count(grid: grid, startX: 1, startY: 1)
+        let result = gameOfLife.count(grid: grid, Coordinate(x: 1, y: 1))
         
         XCTAssertEqual(8, result)
     }
@@ -138,7 +138,7 @@ class GameOfLifeTests: XCTestCase {
                     ["*", "*", "*"],
                     ["*", "*", "*"]]
         
-        let result = gameOfLife.count(grid: grid, startX: 1, startY: 0)
+        let result = gameOfLife.count(grid: grid, Coordinate(x: 1, y: 0))
         
         XCTAssertEqual(5, result)
     }
@@ -148,7 +148,7 @@ class GameOfLifeTests: XCTestCase {
                     ["*", "*", "*"],
                     ["*", "*", "*"]]
         
-        let result = gameOfLife.count(grid: grid, startX: 1, startY: 2)
+        let result = gameOfLife.count(grid: grid, Coordinate(x: 1, y: 2))
         
         XCTAssertEqual(5, result)
     }
@@ -158,7 +158,7 @@ class GameOfLifeTests: XCTestCase {
                     ["*", "*", "*"],
                     ["*", "*", "*"]]
         
-        let result = gameOfLife.count(grid: grid, startX: 0, startY: 0)
+        let result = gameOfLife.count(grid: grid, Coordinate(x: 0, y: 0))
         
         XCTAssertEqual(3, result)
     }
@@ -168,7 +168,7 @@ class GameOfLifeTests: XCTestCase {
                     ["*", "*", "*"],
                     ["*", "*", "*"]]
         
-        let result = gameOfLife.count(grid: grid, startX: 2, startY: 2)
+        let result = gameOfLife.count(grid: grid, Coordinate(x: 2, y: 2))
         
         XCTAssertEqual(3, result)
     }
@@ -179,7 +179,7 @@ class GameOfLifeTests: XCTestCase {
                     ["*", "*", "*", "*"],
                     ["*", "*", "*", "*"]]
         
-        let result = gameOfLife.count(grid: grid, startX: 1, startY: 1)
+        let result = gameOfLife.count(grid: grid, Coordinate(x: 1, y: 1))
         
         XCTAssertEqual(8, result)
     }
@@ -189,11 +189,8 @@ class GameOfLifeTests: XCTestCase {
                     [".", "*", "."],
                     [".", "*", "."]]
 
-        let result = gameOfLife.count(grid: grid, startX: 0, startY: 0)
+        let result = gameOfLife.count(grid: grid, Coordinate(x: 0, y: 0))
         
         XCTAssertEqual(2, result)
     }
-
-
-
 }
