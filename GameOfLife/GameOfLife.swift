@@ -15,11 +15,11 @@ class GameOfLife {
     }
     
     func count(grid: [[String]], _ coordinate: Coordinate) -> Int {
-        var total = (lowerBounds(coordinate.y)...upperBounds(coordinate.y))
+        let total = (lowerBounds(coordinate.y)...upperBounds(coordinate.y))
             .reduce(0) { $0 + countRow(row: grid[$1], coordinate) }
         
         if grid[coordinate.y][coordinate.x] == "*" {
-            total-=1
+            return total - 1
         }
         
         return total
