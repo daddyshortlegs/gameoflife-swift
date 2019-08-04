@@ -15,7 +15,7 @@ class GameOfLife {
     }
     
     func count(grid: [[String]], _ coordinate: Coordinate) -> Int {
-        var total = (topBounds(coordinate.y)...bottomBounds(coordinate.y))
+        var total = (lowerBounds(coordinate.y)...upperBounds(coordinate.y))
             .reduce(0) { $0 + countRow(row: grid[$1], coordinate) }
         
         if grid[coordinate.y][coordinate.x] == "*" {
@@ -26,25 +26,17 @@ class GameOfLife {
     }
     
     func countRow(row: [String], _ coordinate: Coordinate) -> Int {
-        return (leftBounds(coordinate.x)...rightBounds(coordinate.x))
+        return (lowerBounds(coordinate.x)...upperBounds(coordinate.x))
             .filter { row[$0] == "*" }
             .count
     }
     
-    func topBounds(_ startY: Int) -> Int {
-        return (startY - 1) < 0 ? 0 : startY - 1
+    func lowerBounds(_ pos: Int) -> Int {
+        return (pos - 1) < 0 ? 0 : pos - 1
     }
 
-    func bottomBounds(_ startY: Int) -> Int {
-        return (startY + 1) > 2 ? 2 : startY + 1
-    }
-
-    func leftBounds(_ startX: Int) -> Int {
-        return (startX - 1) < 0 ? 0 : startX - 1
-    }
-    
-    func rightBounds(_ startX: Int) -> Int {
-        return (startX + 1) > 2 ? 2 : startX + 1
+    func upperBounds(_ pos: Int) -> Int {
+        return (pos + 1) > 2 ? 2 : pos + 1
     }
 
     func getCell(pos: String, neighbours: Int) -> String {
