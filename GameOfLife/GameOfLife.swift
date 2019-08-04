@@ -5,21 +5,13 @@ struct Coordinate {
 
 class GameOfLife {
     func newGeneration(grid: [[String]]) -> [[String]] {
-        var columns = [[String]]()
-        for y in 0..<grid.count {
-            columns.append(generateRow(grid: grid, y: y))
-        }
-    
-        return columns
+        return grid.enumerated().map { (index, element) in generateRow(grid: grid, y: index) }
     }
     
     func generateRow(grid: [[String]], y: Int) -> [String] {
-        var newRow = [String]()
-        for x in 0..<grid[0].count {
-            let neighbours = count(grid: grid, Coordinate(x: x, y: y))
-            newRow.append(getCell(pos: grid[y][x], neighbours: neighbours))
+        return grid[0].enumerated().map { (x, element) in
+            getCell(pos: grid[y][x], neighbours: count(grid: grid, Coordinate(x: x, y: y)))
         }
-        return newRow
     }
     
     func count(grid: [[String]], _ coordinate: Coordinate) -> Int {
