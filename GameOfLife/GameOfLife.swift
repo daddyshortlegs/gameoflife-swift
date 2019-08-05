@@ -40,8 +40,8 @@ class GameOfLife {
     }
 
     func getCell(pos: String, neighbours: Int) -> String {
-        if pos == "*" {
-            return (neighbours < 2 || neighbours > 3) ? "." : "*"
+        if (pos == "*" && neighbours == 2) {
+            return "*"
         }
         
         return neighbours == 3 ? "*" : "."
