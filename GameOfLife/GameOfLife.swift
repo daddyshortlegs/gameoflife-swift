@@ -11,10 +11,10 @@ class GameOfLife {
     }
     
     func newGeneration() -> [[String]] {
-        return grid.enumerated().map { (index, element) in generateRow(grid: grid, y: index) }
+        return grid.enumerated().map { (index, element) in generateRow(y: index) }
     }
     
-    func generateRow(grid: [[String]], y: Int) -> [String] {
+    func generateRow(y: Int) -> [String] {
         return grid[0].enumerated().map { (x, element) in
             getCell(pos: grid[y][x], neighbours: count(Coordinate(x: x, y: y)))
         }
