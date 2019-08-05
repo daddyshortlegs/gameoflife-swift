@@ -5,26 +5,32 @@ class GameOfLifeTests: XCTestCase {
     
     var gameOfLife: GameOfLife!
     
-    override func setUp() {
-        gameOfLife = GameOfLife()
+    func nextGeneration(of grid: [[String]]) -> [[String]] {
+        gameOfLife = GameOfLife(grid: grid)
+        return gameOfLife.newGeneration()
     }
 
+    func count(of grid: [[String]], _ coordinate: Coordinate) -> Int {
+        gameOfLife = GameOfLife(grid: grid)
+        return gameOfLife.count(coordinate)
+    }
+    
     func xtestShouldDie_whenLonely() {
         let grid = [["*"]]
-        let newGrid = gameOfLife.newGeneration(grid: grid)
-        XCTAssertEqual([["."]], newGrid)
+        let result = nextGeneration(of: grid)
+        XCTAssertEqual([["."]], result)
     }
 
     func xtestShouldDie_whenNoNeighbours() {
         let grid = [[".", "*", "."]]
-        let newGrid = gameOfLife.newGeneration(grid: grid)
-        XCTAssertEqual([[".", ".", "."]], newGrid)
+        let result = nextGeneration(of: grid)
+        XCTAssertEqual([[".", ".", "."]], result)
     }
 
     func xtestShouldDie_whenNoNeighboursOnBiggerGrid() {
         let grid = [[".", "*", ".", "."]]
-        let newGrid = gameOfLife.newGeneration(grid: grid)
-        XCTAssertEqual([[".", ".", ".", "."]], newGrid)
+        let result = nextGeneration(of: grid)
+        XCTAssertEqual([[".", ".", ".", "."]], result)
     }
 
     func testShouldDie_whenNoNeighboursOn2DWorld() {
@@ -32,8 +38,8 @@ class GameOfLifeTests: XCTestCase {
                     [".", "*", "."],
                     [".", ".", "."]]
         
-        let result = gameOfLife.newGeneration(grid: grid)
-        
+        let result = nextGeneration(of: grid)
+
         let newGrid = [[".", ".", "."],
                        [".", ".", "."],
                        [".", ".", "."]]
@@ -45,23 +51,21 @@ class GameOfLifeTests: XCTestCase {
                     [".", "*", "."],
                     [".", ".", "."]]
         
-        let result = gameOfLife.newGeneration(grid: grid)
-        
+        let result = nextGeneration(of: grid)
+
         let newGrid = [[".", ".", "."],
                        [".", ".", "."],
                        [".", ".", "."]]
         XCTAssertEqual(newGrid, result)
     }
 
-    
-
     func testShouldDie_whenMoreThan3Neighbours() {
         let grid = [[".", "*", "*"],
                     [".", "*", "*"],
                     [".", "*", "."]]
         
-        let result = gameOfLife.newGeneration(grid: grid)
-        
+        let result = nextGeneration(of: grid)
+
         let newGrid = [[".", "*", "*"],
                        ["*", ".", "."],
                        [".", "*", "*"]]
@@ -74,8 +78,8 @@ class GameOfLifeTests: XCTestCase {
                     [".", "*", "*"],
                     [".", ".", "."]]
         
-        let result = gameOfLife.newGeneration(grid: grid)
-        
+        let result = nextGeneration(of: grid)
+
         let newGrid = [[".", "*", "*"],
                        [".", "*", "*"],
                        [".", ".", "."]]
@@ -87,8 +91,8 @@ class GameOfLifeTests: XCTestCase {
                     [".", "*", "*"],
                     [".", ".", "."]]
         
-        let result = gameOfLife.newGeneration(grid: grid)
-        
+        let result = nextGeneration(of: grid)
+
         let newGrid = [[".", "*", "*"],
                        [".", "*", "*"],
                        [".", ".", "."]]
@@ -101,8 +105,8 @@ class GameOfLifeTests: XCTestCase {
                     [".", "*", "."],
                     [".", "*", "."]]
         
-        let result = gameOfLife.newGeneration(grid: grid)
-        
+        let result = nextGeneration(of: grid)
+
         let newGrid = [[".", ".", "."],
                        ["*", "*", "*"],
                        [".", ".", "."]]
@@ -116,8 +120,8 @@ class GameOfLifeTests: XCTestCase {
                     [".", "*", ".", "."],
                     [".", ".", ".", "."]]
         
-        let result = gameOfLife.newGeneration(grid: grid)
-        
+        let result = nextGeneration(of: grid)
+
         let newGrid = [[".", ".", ".", "."],
                        [".", ".", ".", "."],
                        ["*", "*", "*", "."],
@@ -135,7 +139,7 @@ class GameOfLifeTests: XCTestCase {
                     [".", "*", "*"],
                     [".", ".", "."]]
         
-        let result = gameOfLife.count(grid: grid, Coordinate(x: 1, y: 1))
+        let result = count(of: grid, Coordinate(x: 1, y: 1))
         
         XCTAssertEqual(2, result)
     }
@@ -145,8 +149,8 @@ class GameOfLifeTests: XCTestCase {
                     ["*", "*", "*"],
                     ["*", "*", "*"]]
         
-        let result = gameOfLife.count(grid: grid, Coordinate(x: 1, y: 1))
-        
+        let result = count(of: grid, Coordinate(x: 1, y: 1))
+
         XCTAssertEqual(8, result)
     }
 
@@ -155,8 +159,8 @@ class GameOfLifeTests: XCTestCase {
                     ["*", "*", "*"],
                     ["*", "*", "*"]]
         
-        let result = gameOfLife.count(grid: grid, Coordinate(x: 1, y: 0))
-        
+        let result = count(of: grid, Coordinate(x: 1, y: 0))
+
         XCTAssertEqual(5, result)
     }
 
@@ -165,8 +169,8 @@ class GameOfLifeTests: XCTestCase {
                     ["*", "*", "*"],
                     ["*", "*", "*"]]
         
-        let result = gameOfLife.count(grid: grid, Coordinate(x: 1, y: 2))
-        
+        let result = count(of: grid, Coordinate(x: 1, y: 2))
+
         XCTAssertEqual(5, result)
     }
 
@@ -175,8 +179,8 @@ class GameOfLifeTests: XCTestCase {
                     ["*", "*", "*"],
                     ["*", "*", "*"]]
         
-        let result = gameOfLife.count(grid: grid, Coordinate(x: 0, y: 0))
-        
+        let result = count(of: grid, Coordinate(x: 0, y: 0))
+
         XCTAssertEqual(3, result)
     }
 
@@ -185,8 +189,8 @@ class GameOfLifeTests: XCTestCase {
                     ["*", "*", "*"],
                     ["*", "*", "*"]]
         
-        let result = gameOfLife.count(grid: grid, Coordinate(x: 2, y: 2))
-        
+        let result = count(of: grid, Coordinate(x: 2, y: 2))
+
         XCTAssertEqual(3, result)
     }
 
@@ -196,7 +200,7 @@ class GameOfLifeTests: XCTestCase {
                     ["*", "*", "*", "*"],
                     ["*", "*", "*", "*"]]
         
-        let result = gameOfLife.count(grid: grid, Coordinate(x: 1, y: 1))
+        let result = count(of: grid, Coordinate(x: 1, y: 1))
         
         XCTAssertEqual(8, result)
     }
@@ -206,7 +210,7 @@ class GameOfLifeTests: XCTestCase {
                     [".", "*", "."],
                     [".", "*", "."]]
 
-        let result = gameOfLife.count(grid: grid, Coordinate(x: 0, y: 0))
+        let result = count(of: grid, Coordinate(x: 0, y: 0))
         
         XCTAssertEqual(2, result)
     }

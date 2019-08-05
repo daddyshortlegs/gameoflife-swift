@@ -4,17 +4,23 @@ struct Coordinate {
 }
 
 class GameOfLife {
-    func newGeneration(grid: [[String]]) -> [[String]] {
+    let grid: [[String]]
+    
+    init(grid: [[String]]) {
+        self.grid = grid
+    }
+    
+    func newGeneration() -> [[String]] {
         return grid.enumerated().map { (index, element) in generateRow(grid: grid, y: index) }
     }
     
     func generateRow(grid: [[String]], y: Int) -> [String] {
         return grid[0].enumerated().map { (x, element) in
-            getCell(pos: grid[y][x], neighbours: count(grid: grid, Coordinate(x: x, y: y)))
+            getCell(pos: grid[y][x], neighbours: count(Coordinate(x: x, y: y)))
         }
     }
     
-    func count(grid: [[String]], _ coordinate: Coordinate) -> Int {
+    func count(_ coordinate: Coordinate) -> Int {
         let total = (lowerBounds(coordinate.y)...upperBounds(coordinate.y))
             .reduce(0) { $0 + countRow(row: grid[$1], coordinate) }
         
