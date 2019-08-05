@@ -37,7 +37,7 @@ class World {
     }
     
     func upperBounds(_ pos: Int) -> Int {
-        return (pos + 1) > 2 ? 2 : pos + 1
+        return (pos + 1) > (grid.count - 1) ? (grid.count - 1) : pos + 1
     }
     
     func getCell(pos: String, neighbours: Int) -> String {

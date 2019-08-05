@@ -113,19 +113,17 @@ class GameOfLifeTests: XCTestCase {
         XCTAssertEqual(newGrid, result)
     }
 
-    func xtestLiveCellSurvives_when2Or3NeighboursOnaABiggerBoard() {
+    func testLiveCellSurvives_when2Or3NeighboursOnaABiggerBoard() {
         let grid = [[".", ".", ".", "."],
                     [".", "*", ".", "."],
                     [".", "*", ".", "."],
-                    [".", "*", ".", "."],
-                    [".", ".", ".", "."]]
+                    [".", "*", ".", "."]]
         
         let result = nextGeneration(of: grid)
 
         let newGrid = [[".", ".", ".", "."],
                        [".", ".", ".", "."],
                        ["*", "*", "*", "."],
-                       [".", ".", ".", "."],
                        [".", ".", ".", "."]]
         XCTAssertEqual(newGrid, result)
     }
